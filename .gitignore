@@ -1,0 +1,6 @@
+/.vscode
+/include
+/lib
+/output
+src/main.d
+src/main.o
