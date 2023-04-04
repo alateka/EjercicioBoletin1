@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 struct asignatura
 {
@@ -12,7 +13,7 @@ struct asignatura
 struct asignatura asignaturas[44];
 
 
-int alta()
+alta()
 {
     struct asignatura a;
     printf("------------------------------------------\n");
@@ -27,25 +28,36 @@ int alta()
     scanf("%s", &a.descripcion);
 
     int counter = 0; 
-    while ( counter <= 44 )
+    while ( counter <= 44 || asignaturas[counter].clave == NULL)
     {
-        if ( asignaturas[counter].clave == NULL ) {
-            asignaturas[counter] = a;
-            counter = 45;
-        }
+        asignaturas[counter] = a;
         counter++;
     }
+}
+
+list()
+{
+    int counter = 0;
+    while ( counter <= 44 || asignaturas[counter].clave == NULL)
+    {
+        printf("|n==========================\n");
+        printf(">>> %c", asignaturas[counter].clave);
+        counter++;
+    }
+    
+    printf("%s", a.profesor);
 }
 
 int main()
 {
     int opcion = 0;
-    while (opcion != 2)
+    while (opcion != 3) 
     {
         printf("------------------------------------------\n");
         printf("==> Seleccione una opción \n");
         printf("- 1 ( Dar de alta una asignatura ) \n");
-        printf("- 2 ( Salir ) \n");
+        printf("- 2 ( Listar asignaturas ) \n");
+        printf("- 3 ( Salir ) \n");
         printf("\n--> ");
         scanf("%i", &opcion);
 
@@ -54,7 +66,11 @@ int main()
             case 1:
                 alta();
                 break;
-            
+
+            case 2:
+                list();
+                break;
+
             default:
                 break;
         }
