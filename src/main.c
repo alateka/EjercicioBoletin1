@@ -13,7 +13,7 @@ struct asignatura
 struct asignatura asignaturas[44];
 
 
-alta()
+void alta()
 {
     struct asignatura a;
     printf("------------------------------------------\n");
@@ -28,24 +28,22 @@ alta()
     scanf("%s", &a.descripcion);
 
     int counter = 0; 
-    while ( counter <= 44 || asignaturas[counter].clave == NULL)
+    while ( asignaturas[counter].clave == NULL || counter <= 44 )
     {
         asignaturas[counter] = a;
         counter++;
     }
 }
 
-list()
+void list()
 {
     int counter = 0;
-    while ( counter <= 44 || asignaturas[counter].clave == NULL)
+    while (asignaturas[counter].clave == NULL || counter <= 44 )
     {
         printf("|n==========================\n");
         printf(">>> %c", asignaturas[counter].clave);
         counter++;
     }
-    
-    printf("%s", a.profesor);
 }
 
 int main()
