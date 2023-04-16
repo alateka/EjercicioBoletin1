@@ -10,6 +10,8 @@ struct asignatura
     char descripcion[80];
 };
 
+int counter = 0;
+
 struct asignatura asignaturas[44];
 
 
@@ -27,22 +29,32 @@ void alta()
     printf("\n--> Descripción: ");
     scanf("%s", &a.descripcion);
 
-    int counter = 0; 
-    while ( asignaturas[counter].clave == NULL || counter <= 44 )
-    {
-        asignaturas[counter] = a;
-        counter++;
-    }
+    asignaturas[counter] = a;
+    counter++;
 }
 
 void list()
 {
-    int counter = 0;
-    while (asignaturas[counter].clave == NULL || counter <= 44 )
+    int i = 0;
+    while ( i <= 44 )
     {
-        printf("|n==========================\n");
-        printf(">>> %c", asignaturas[counter].clave);
-        counter++;
+        if ( asignaturas[i].clave ) {
+
+            printf("\n ==> Numero de la lista: %i", i);
+            printf("\n==========================================\n >>> Clave asignatura: ");
+            printf("%c", asignaturas[i].clave);
+            printf("\n==========================================\n >>> Título: ");
+            printf("%s", asignaturas[i].titulo);
+            printf("\n==========================================\n >>> Profesor: ");
+            printf("%s", asignaturas[i].profesor);
+            printf("\n==========================================\n >>> Descripción: ");
+            printf("%s", asignaturas[i].descripcion);
+            printf("\n==========================================\n");
+            printf("\n\n");
+            i++;
+
+        } else return;
+        
     }
 }
 
