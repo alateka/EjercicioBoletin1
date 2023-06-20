@@ -10,9 +10,10 @@ struct asignatura
     char descripcion[80];
 };
 
+#define TAMANIO_INICIAL 44
 int counter = 0;
-
-struct asignatura asignaturas[44];
+struct asignatura asignaturas[TAMANIO_INICIAL];
+int tamanio = sizeof(asignaturas) / sizeof(asignaturas[0]);
 
 
 void alta()
@@ -33,13 +34,34 @@ void alta()
     counter++;
 }
 
+void eliminar()
+{
+    char claveBorrar;
+    printf("\n==> Indique una clave");
+    printf("\n--> ");
+    scanf(" %c", &claveBorrar);
+
+    for (int i = 0; i < TAMANIO_INICIAL; i++) {
+        
+        if ( asignaturas[i].clave == claveBorrar ) {
+
+            while ( i < tamanio - 1 ) {
+                asignaturas[i] = asignaturas[i + 1];
+                i++;
+            }
+            tamanio--;
+            counter--;
+        }
+    }
+}
+
 void list()
 {
     int i = 0;
-    while ( i <= 44 )
+    while ( i <= TAMANIO_INICIAL )
     {
         if ( asignaturas[i].clave ) {
-
+            
             printf("\n ==> Numero de la lista: %i", i);
             printf("\n==========================================\n >>> Clave asignatura: ");
             printf("%c", asignaturas[i].clave);
@@ -61,13 +83,14 @@ void list()
 int main()
 {
     int opcion = 0;
-    while (opcion != 3) 
+    while ( opcion != 4 ) 
     {
-        printf("------------------------------------------\n");
+        printf("\n------------------------------------------\n");
         printf("==> Seleccione una opción \n");
         printf("- 1 ( Dar de alta una asignatura ) \n");
         printf("- 2 ( Listar asignaturas ) \n");
-        printf("- 3 ( Salir ) \n");
+        printf("- 3 ( Eliminar una asignatura ) \n");
+        printf("- 4 ( Salir ) \n");
         printf("\n--> ");
         scanf("%i", &opcion);
 
@@ -79,6 +102,10 @@ int main()
 
             case 2:
                 list();
+                break;
+            
+            case 3:
+                eliminar();
                 break;
 
             default:
